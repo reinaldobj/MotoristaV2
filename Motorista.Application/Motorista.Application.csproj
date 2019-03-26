@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Carro\Carro.cs" />
+    <Compile Remove="Carro\ICarro.cs" />
+    <Compile Remove="Localizacao\ILocalizacao.cs" />
+    <Compile Remove="Localizacao\Localizacao.cs" />
+    <Compile Remove="Motorista\IMotorista.cs" />
+    <Compile Remove="Motorista\Motorista.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="SyrianBallaS.AutoMapper.Extensions.Microsoft.DependencyInjection.Signed" Version="3.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Motorista.Domain\Motorista.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
