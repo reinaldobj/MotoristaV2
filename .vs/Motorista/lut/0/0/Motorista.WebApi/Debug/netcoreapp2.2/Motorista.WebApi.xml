@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Motorista.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:Motorista.WebApi.Controllers.CarroController">
+            <summary>
+            API de carros
+            </summary>
+        </member>
+        <member name="M:Motorista.WebApi.Controllers.CarroController.#ctor(Motorista.Application.Carro.Commands.CriarCarro.ICriarCarroCommand,Motorista.Application.Carro.Commands.AtualizarCarro.IAtualizarCarroCommand,Motorista.Application.Carro.Commands.ExcluirCarro.IExcluirCarroCommand,Motorista.Application.Carro.Queries.ObterCarro.IObterCarrosQuery,Motorista.Application.Carro.Queries.ListarCarros.IListarCarrosQuery)">
+            <summary>
+            Construtor da Classe
+            </summary>
+            <param name="criarCarro"></param>
+            <param name="atualizarCarro"></param>
+            <param name="carroCommand"></param>
+            <param name="obterCarros"></param>
+            <param name="listarCarros"></param>
+        </member>
+        <member name="M:Motorista.WebApi.Controllers.CarroController.Listar(Motorista.WebApi.Requests.Carro.CarroGetRequest)">
+            <summary>
+            Lista todos os carros cadastrado
+            </summary>
+            <returns>Lista de carros</returns>
+        </member>
+        <member name="M:Motorista.WebApi.Controllers.CarroController.ListarDropDown">
+            <summary>
+            Lista todos os carros cadastrado
+            </summary>
+            <returns>Lista de carros</returns>
+        </member>
+        <member name="T:Motorista.WebApi.Controllers.MotoristaController">
+            <summary>
+            API de Motorista
+            </summary>
+        </member>
+        <member name="M:Motorista.WebApi.Controllers.MotoristaController.#ctor(Motorista.Application.Motorista.Commands.CriarMotorista.ICriarMotoristaCommand,Motorista.Application.Motorista.Commands.AtualizarMotorista.IAtualizarMotoristaCommand,Motorista.Application.Motorista.Commands.ExcluirMotorista.IExcluirMotoristaCommand,Motorista.Application.Motorista.Queries.ObterMotorista.IObterMotoristaQuery,Motorista.Application.Motorista.Queries.ListarMotoristas.IListarMotoristasQuery)">
+            <summary>
+            Construtor da Classe
+            </summary>
+            <param name="criarMotorista"></param>
+            <param name="atualizarMotorista"></param>
+            <param name="excluirMotorista"></param>
+            <param name="obterMotorista"></param>
+            <param name="listarMotoristas"></param>
+        </member>
+        <member name="M:Motorista.WebApi.Controllers.MotoristaController.ObterPorId(Motorista.WebApi.Requests.Motorista.MotoristaGetRequest)">
+            <summary>
+            Retorna o cadastro de um motorista
+            </summary>
+            <param name="request">Request</param>
+            <returns>Motorista</returns>
+        </member>
+        <member name="M:Motorista.WebApi.Controllers.MotoristaController.Listar(Motorista.WebApi.Requests.Motorista.MotoristaGetListRequest)">
+            <summary>
+            Lista todos os motoristas cadastrado
+            </summary>
+            <param name="request">Request</param>
+            <returns>Lista de motorista</returns>
+        </member>
+        <member name="M:Motorista.WebApi.Controllers.MotoristaController.ListarOrdenadoPorNome">
+            <summary>
+            Retorna lista de motorista ordenada pelo nome
+            </summary>
+            <returns>Lista ordenada de motoristas</returns>
+        </member>
+        <member name="M:Motorista.WebApi.Controllers.MotoristaController.ListarOrdenadoPorUltimoNome">
+            <summary>
+            Retorna lista de motorista ordenada pelo último nome
+            </summary>
+            <returns>Lista ordenada de motoristas</returns>
+        </member>
+        <member name="M:Motorista.WebApi.Controllers.MotoristaController.Incluir(Motorista.Application.ViewModel.MotoristaViewModel)">
+            <summary>
+            Cadastra um novo motorista
+            </summary>
+            <param name="motorista">Motorista que será cadastrado</param>
+            <returns>Motorista cadastrado</returns>
+        </member>
+        <member name="M:Motorista.WebApi.Controllers.MotoristaController.Alterar(Motorista.Application.ViewModel.MotoristaViewModel)">
+            <summary>
+            Atualiza o cadastro de um motorista
+            </summary>
+            <param name="motorista">Motorista a ser atualizado</param>
+            <returns>Indica se o motorista foi encontrado na base para ser atualizado</returns>
+        </member>
+        <member name="M:Motorista.WebApi.Controllers.MotoristaController.Excluir(Motorista.WebApi.Requests.Motorista.MotoristaDeleteRequest)">
+            <summary>
+            Exclui o cadastro de um motorista
+            </summary>
+            <param name="request">Request</param>
+            <returns>Indica se o motorista foi encontrado para ser excluído</returns>
+        </member>
+        <member name="T:Motorista.WebApi.Requests.Carro.CarroGetRequest">
+            <summary>
+            Entidade de Request do Get de Carros
+            </summary>
+        </member>
+        <member name="P:Motorista.WebApi.Requests.Carro.CarroGetRequest.Modelo">
+            <summary>
+            Nome do Carro
+            </summary>
+        </member>
+        <member name="T:Motorista.WebApi.Requests.Motorista.MotoristaDeleteRequest">
+            <summary>
+             Classe de Request de Delete de Motorista
+            </summary>
+        </member>
+        <member name="P:Motorista.WebApi.Requests.Motorista.MotoristaDeleteRequest.Id">
+            <summary>
+            Id do motorista
+            </summary>
+        </member>
+        <member name="T:Motorista.WebApi.Requests.Motorista.MotoristaGetListRequest">
+            <summary>
+            Request de Get List de Motorista
+            </summary>
+        </member>
+        <member name="P:Motorista.WebApi.Requests.Motorista.MotoristaGetListRequest.Nome">
+            <summary>
+            Nome do motorista
+            </summary>
+        </member>
+        <member name="T:Motorista.WebApi.Requests.Motorista.MotoristaGetRequest">
+            <summary>
+            Classe de Request do Get de Motorista
+            </summary>
+        </member>
+        <member name="P:Motorista.WebApi.Requests.Motorista.MotoristaGetRequest.Id">
+            <summary>
+            Id do motorista
+            </summary>
+        </member>
+        <member name="P:Motorista.WebApi.Response.Carro.CarroListarDropDownResponse.Valor">
+            <summary>
+            Identificador
+            </summary>
+        </member>
+        <member name="P:Motorista.WebApi.Response.Carro.CarroListarDropDownResponse.Descricao">
+            <summary>
+            Texto a ser exibido
+            </summary>
+        </member>
+    </members>
+</doc>
