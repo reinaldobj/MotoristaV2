@@ -11,7 +11,7 @@ namespace Motorista.WebApi.Requests.Motorista
         /// <summary>
         /// Nome do motorista
         /// </summary>
-        [FromRoute(Name = "nome")]
+        [FromQuery(Name = "nome")]
         public string Nome { get; set; }
     }
 }
