@@ -67,7 +67,7 @@ namespace Motorista.WebApi.Controllers
         /// </summary>
         /// <param name="request">Request</param>
         /// <returns>Lista de motorista</returns>
-        [HttpGet("[action]/{nome}")]
+        [HttpGet("[action]")]
         public ActionResult<IEnumerable<MotoristaViewModel>> Listar([FromQuery]MotoristaGetListRequest request)
         {
             try {
