@@ -26,7 +26,7 @@ namespace Motorista.Application.Motorista.Queries.ListarMotoristas
             CampoOrdenacaoEnum? ordenacao = CampoOrdenacaoEnum.Nenhum)
         {
             var motoristas = motoristaRepository.Listar(m =>
-                (string.IsNullOrEmpty(nomeMotorista) || m.Nome.Contains(nomeMotorista))
+                (string.IsNullOrEmpty(nomeMotorista) || ($"{ m.Nome } { m.UltimoNome }").ToLowerInvariant().Contains(nomeMotorista.ToLowerInvariant()))
             );
 
             if (ordenacao == CampoOrdenacaoEnum.Nome)

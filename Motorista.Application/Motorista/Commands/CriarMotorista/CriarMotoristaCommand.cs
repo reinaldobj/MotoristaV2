@@ -34,7 +34,7 @@ namespace Motorista.Application.Motorista.Commands.CriarMotorista
 
             await PreencherCoordenadasEndereco(motoristaViewModel);
 
-            var motorista = mapper.Map<MotoristaViewModel, MotoristaModel>(motoristaViewModel);
+            MotoristaModel motorista = mapper.Map<MotoristaViewModel, MotoristaModel>(motoristaViewModel);
 
             motoristaRepository.Adicionar(motorista);
             motoristaRepository.SalvarAlteracoes();
@@ -42,9 +42,9 @@ namespace Motorista.Application.Motorista.Commands.CriarMotorista
 
         private async Task PreencherCoordenadasEndereco(MotoristaViewModel motoristaViewModel)
         {
-            var endereco = mapper.Map<EnderecoViewModel, Endereco>(motoristaViewModel.Endereco);
+            Endereco endereco = mapper.Map<EnderecoViewModel, Endereco>(motoristaViewModel.Endereco);
 
-            var localizacao = await obterCoordenadasQuery.Execute(endereco);
+            GeolocationResult.Localizacao localizacao = await obterCoordenadasQuery.Execute(endereco);
             motoristaViewModel.Endereco.Latitude = localizacao.Latitude.ToString();
             motoristaViewModel.Endereco.Longitude = localizacao.Longitude.ToString();
         }

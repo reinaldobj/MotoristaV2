@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Motorista.WebApi.Requests.Motorista
@@ -17,7 +12,6 @@ namespace Motorista.WebApi.Requests.Motorista
         /// Nome do motorista
         /// </summary>
         [FromRoute(Name = "nome")]
-        [MinLength(0)]
         public string Nome { get; set; }
     }
 }

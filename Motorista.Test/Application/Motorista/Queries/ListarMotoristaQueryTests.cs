@@ -1,31 +1,36 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using AutoMapper;
+using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
+using Moq;
+using Motorista.Application.AutoMapper;
+using Motorista.Application.Motorista.Queries.ListarMotoristas;
+using Motorista.Domain.Enum;
+using Motorista.Domain.Interfaces;
 using NUnit.Framework;
-using MotoristaModel = Motorista.Domain.Models.Motorista;
 using CarroModel = Motorista.Domain.Models.Carro;
 using EnderecoModel = Motorista.Domain.Models.Endereco;
-using Motorista.Domain.Interfaces;
-using Motorista.Application.ViewModel;
-using FluentAssertions;
-using Motorista.Application.Motorista.Queries.ListarMotoristas;
-using AutoMapper;
-using Moq;
-using System;
-using System.Linq.Expressions;
-using Motorista.Domain.Enum;
+using MotoristaModel = Motorista.Domain.Models.Motorista;
 
 namespace Tests.Application.Motorista.Queries
 {
     public class ListarMotoristaQueryTests
     {
-        private Mock<IMapper> mapperMock;
         private Mock<IMotoristaRepository> motoristaRepositoryMock;
 
         private IListarMotoristasQuery query;
 
         private MotoristaModel motorista;
-        private MotoristaViewModel motoristaViewModel;
-        private string nomeMotorista = "Zé";
+        private MotoristaModel motorista2;
+        
+        private List<MotoristaModel> motoristas;
+
+        private readonly string nomeMotorista = "Zé";
+
+        private MapperConfiguration mapperConfiguration;
 
         [SetUp]
         public void SetUp()
@@ -50,13 +55,18 @@ namespace Tests.Application.Motorista.Queries
                 }
             };
 
-            motoristaViewModel = new MotoristaViewModel {
-                Id = 1,
+            motorista2 = new MotoristaModel {
+                Id = 2,
                 Nome = "Zé",
                 UltimoNome = "Da Kombi",
-                IdCarro = 1,
-                Endereco = new EnderecoViewModel {
-                    Id = 1,
+                Carro = new CarroModel {
+                    Id = 2,
+                    Marca = "VW",
+                    Modelo = "Kombi",
+                    Placa = "ABC-1234"
+                },
+                Endereco = new EnderecoModel {
+                    Id = 2,
                     CEP = "12345-000",
                     Cidade = "São Paulo",
                     Numero = 88,
@@ -65,24 +75,29 @@ namespace Tests.Application.Motorista.Queries
                 }
             };
 
-            Predicate<MotoristaModel> predicate = 
-                l => (string.IsNullOrEmpty(nomeMotorista) || l.Nome.Contains(nomeMotorista));
+            motoristas = new List<MotoristaModel> {
+                motorista,
+                motorista2
+            };
 
+            mapperConfiguration = AutoMapperConfig.RegisterMappings();
+
+            var mockSet = new Mock<DbSet<MotoristaModel>>();
+            mockSet.As<IQueryable<MotoristaModel>>().Setup(m => m.Provider).Returns(motoristas.AsQueryable().Provider);
+            mockSet.As<IQueryable<MotoristaModel>>().Setup(m => m.Expression).Returns(motoristas.AsQueryable().Expression);
+            mockSet.As<IQueryable<MotoristaModel>>().Setup(m => m.ElementType).Returns(motoristas.AsQueryable().ElementType);
+            mockSet.As<IQueryable<MotoristaModel>>().Setup(m => m.GetEnumerator()).Returns(motoristas.AsQueryable().GetEnumerator());
+            
             motoristaRepositoryMock = new Mock<IMotoristaRepository>();
             motoristaRepositoryMock
                 .Setup(m => m.Listar(It.IsAny<Expression<Func<MotoristaModel, bool>>>()))
-                .Returns(new List<MotoristaModel> { motorista }.AsQueryable());
-
-            mapperMock = new Mock<IMapper>();
-            mapperMock
-                .Setup(m => m.Map<IEnumerable<MotoristaModel>, IEnumerable<MotoristaViewModel>>(new List<MotoristaModel> { motorista }))
-                .Returns(new List<MotoristaViewModel> { motoristaViewModel }.AsQueryable());
+                .Returns(mockSet.Object);
         }
 
         [Test]
         public void TestExecuteDeveRetornarUmaListaDeMotoristas()
         {
-            query = new ListarMotoristasQuery(motoristaRepositoryMock.Object, mapperMock.Object);
+            query = new ListarMotoristasQuery(motoristaRepositoryMock.Object, mapperConfiguration.CreateMapper());
             var restults = query.Execute(nomeMotorista, CampoOrdenacaoEnum.Nenhum);
 
             restults.Should().NotBeNullOrEmpty();
@@ -91,7 +106,7 @@ namespace Tests.Application.Motorista.Queries
         [Test]
         public void TestExecuteDeveRetornarUmaListaDeMotoristasOrdenadoPorNome()
         {
-            query = new ListarMotoristasQuery(motoristaRepositoryMock.Object, mapperMock.Object);
+            query = new ListarMotoristasQuery(motoristaRepositoryMock.Object, mapperConfiguration.CreateMapper());
             var restults = query.Execute(nomeMotorista, CampoOrdenacaoEnum.Nome);
 
             restults.Should().NotBeNullOrEmpty();
@@ -100,7 +115,7 @@ namespace Tests.Application.Motorista.Queries
         [Test]
         public void TestExecuteDeveRetornarUmaListaDeMotoristasOrdenadoPorUltimoNome()
         {
-            query = new ListarMotoristasQuery(motoristaRepositoryMock.Object, mapperMock.Object);
+            query = new ListarMotoristasQuery(motoristaRepositoryMock.Object, mapperConfiguration.CreateMapper());
             var restults = query.Execute(nomeMotorista, CampoOrdenacaoEnum.UltimoNome);
 
             restults.Should().NotBeNullOrEmpty();

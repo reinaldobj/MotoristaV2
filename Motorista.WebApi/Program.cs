@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Motorista.WebApi
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class Program
     {
         public static void Main(string[] args)
@@ -16,4 +17,5 @@ namespace Motorista.WebApi
                 .UseStartup<Startup>();
         }
     }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Motorista.WebApi.Response.Carro
+﻿namespace Motorista.WebApi.Response.Carro
 {
     public class CarroListarDropDownResponse
     {

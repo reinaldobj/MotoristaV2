@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using Motorista.Application.ViewModel;
 using Motorista.Domain.Interfaces;
 using MotoristaModel = Motorista.Domain.Models.Motorista;

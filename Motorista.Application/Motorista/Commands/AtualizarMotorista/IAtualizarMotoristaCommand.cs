@@ -1,4 +1,5 @@
-﻿using Motorista.Application.ViewModel;
+﻿using System.Threading.Tasks;
+using Motorista.Application.ViewModel;
 
 namespace Motorista.Application.Motorista.Commands.AtualizarMotorista
 {

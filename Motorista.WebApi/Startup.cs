@@ -1,15 +1,14 @@
 ﻿using System.IO;
-using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using Motorista.Infra.CrossCutting.IoC;
 using Motorista.Infra.Data.Context;
+using Motorista.WebApi.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Motorista.WebApi
@@ -31,7 +30,7 @@ namespace Motorista.WebApi
                     b => b.MigrationsAssembly("Motorista.App"));
             });
 
-            services.AddAutoMapper();
+            services.AddAutoMapperSetup();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Configurando o serviço de documentação do Swagger

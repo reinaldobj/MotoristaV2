@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Motorista.Application\Motorista.Application.csproj" />
     <ProjectReference Include="..\Motorista.Domain\Motorista.Domain.csproj" />
+    <ProjectReference Include="..\Motorista.Infra.Data\Motorista.Infra.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

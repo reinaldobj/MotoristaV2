@@ -63,4 +63,4 @@ dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
 #prefer fields not to be prefaced with this. or Me. in Visual Basic
 dotnet_style_qualification_for_field = false:suggestion
 #prefer methods to be prefaced with this. in C# or Me. in Visual Basic
-dotnet_style_qualification_for_method = true:suggestion
+dotnet_style_qualification_for_method = false:suggestion

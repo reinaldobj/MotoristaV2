@@ -59,7 +59,7 @@ namespace Motorista.WebApi.Controllers
         {
             MotoristaViewModel motorista = obterMotorista.Execute(request.Id);
 
-            return motorista != null ? motorista : (ActionResult<MotoristaViewModel>)NotFound();
+            return motorista ?? (ActionResult<MotoristaViewModel>)NotFound();
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Motorista.WebApi.Controllers
         /// </summary>
         /// <param name="request">Request</param>
         /// <returns>Lista de motorista</returns>
-        [HttpGet("[action]")]
+        [HttpGet("[action]/{nome}")]
         public ActionResult<IEnumerable<MotoristaViewModel>> Listar([FromQuery]MotoristaGetListRequest request)
         {
             try {
@@ -159,7 +159,7 @@ namespace Motorista.WebApi.Controllers
         /// <param name="motorista">Motorista a ser atualizado</param>
         /// <returns>Indica se o motorista foi encontrado na base para ser atualizado</returns>
         [HttpPut]
-        public async Task<ActionResult<MotoristaViewModel>> Alterar([FromBody]MotoristaViewModel motorista)
+        public ActionResult Alterar([FromBody]MotoristaViewModel motorista)
         {
             try {
 
