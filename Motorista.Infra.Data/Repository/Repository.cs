@@ -25,7 +25,10 @@ namespace Motorista.Infra.Data.Repository
 
         public virtual TEntity ObterPorId(int id)
         {
-            return DbSet.Find(id);
+            var obj = DbSet.Find(id);
+            Db.Entry(obj).State = EntityState.Detached;
+
+            return obj;
         }
 
         public virtual IQueryable<TEntity> ListarTodos()

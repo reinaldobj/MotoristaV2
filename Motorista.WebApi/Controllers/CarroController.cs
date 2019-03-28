@@ -82,9 +82,11 @@ namespace Motorista.WebApi.Controllers
                         Descricao = $"{item.Modelo} - {item.Placa}",
                         Valor = item.Id
                     };
+
+                    carrosDropdownOptions.Add(carroListarDropDownResponse);
                 }
 
-                return Ok(carros);
+                return Ok(carrosDropdownOptions);
             }
             catch (Exception ex) {
                 new TelemetryClient().TrackException(ex);

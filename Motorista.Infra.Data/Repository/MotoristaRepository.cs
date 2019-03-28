@@ -20,5 +20,14 @@ namespace Motorista.Infra.Data.Repository
                 .Include(m => m.Carro)
                 .Include(m => m.Endereco);
         }
+
+        public override Domain.Models.Motorista ObterPorId(int id)
+        {
+            return DbSet
+                .Include(m => m.Carro)
+                .Include(m => m.Endereco)
+                .AsNoTracking()
+                .FirstOrDefault(m => m.Id == id);
+        }
     }
 }
